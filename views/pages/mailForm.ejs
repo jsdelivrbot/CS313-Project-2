@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form action="/getMail" method="GET">
+        <p>Please Select Postage Type</p>
+        <select id="mailType" name="operator">
+        	<option value="stamped">Stamped Letter</option>
+        	<option value="metered">Metered Letter</option>
+        	<option value="flat">Large Envelope</option>
+        	<option value="firstClass">First Class Package</option>
+        </select>
+        <p>Please enter the weight of your postage</p>
+        <input type="text" id="weight" name="weight"/>
+        <br>
+		<input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
