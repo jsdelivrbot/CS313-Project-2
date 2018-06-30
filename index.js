@@ -32,7 +32,7 @@ function getPrice(req, res) {
 
 function storeQuery(query) {
 	var sql = 'INSERT INTO item (searchItem, ts) VALUES ("' + query + '", CURRENT_TIMESTAMP';
-
+	console.log("DB WORK");
 	pool.query(sql, function(err, result) {
 		if (err) {
 			console.log(err);
