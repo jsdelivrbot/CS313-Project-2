@@ -1,65 +1,92 @@
-const express = require('express')
+var express = require("express");
+var app = express();
 const path = require('path')
-const PORT = process.env.PORT || 5000
+const { Pool } = require{"pg"};
 
-function calculateRate(postage, weight) {
-	switch (postage) {
-		case "stamped":
-			if (weight >= 3.5) {
-				return 1.13;
-			}
-			else {
-				return Math.ceil(weight - 1) * 0.21 + 0.5;
-			}
-		case "metered":
-			if (weight >= 3.5) {
-				return 1.10;
-			}
-			else {
-				return Math.ceil(weight - 1) * 0.21 + 0.47; 
-			}
-		case "flat":
-			if (weight >= 13) {
-				return 3.52;
-			}
-			else {
-				return Math.ceil(weight - 1) * 0.21 + 1;
-			}
-		case "firstClass":
-			if (weight <= 4)
-				return 3.50;
-			else if (weight <= 8)
-				return 3.75;
-			else if (weight <= 9)
-				return 4.10;
-			else if (weight <= 10)
-				return 4.45;
-			else if (weight <= 11)
-				return 4.80;
-			else if (weight <= 12)
-				return 5.15;
-			else
-				return 5.50;
-	}
-}
+const connectionString = process.env.DATABASE_URL;
+
+var ebay = require('ebay-api');
+
+
+//EBAY PARAMS:
+//itemID = unique identifier
+//convertedCurrentPrice.amount
 
 express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', function(req, res) {
-  	res.render('pages/mailForm');
-  })
-  .get('/getMail', function(req, res) {
-  	let first = req.query.operator;
-    let second = parseInt(req.query.weight);
-    let rate = Math.round(calculateRate(first, second) * 100) / 100;
+	.use(express.static(path.join(__dirname, 'public')))
+  	.set('views', path.join(__dirname, 'views'))
+  	.set('view engine', 'ejs')
+	.set("port", (process.env.PORT || 5000))
+	.get('/', function(req, res) {
+  		res.render('pages/requestForm');
+	})
+	.get("/getPrice", getPrice)
+	.get("/getItem", getItem)
+	.listen(5000, function() {
+		console.log("Now Listening on Port: ", app.get("port"));
+	});
 
-    let obj = {
-            'rate': rate,
-        }
-    res.render('pages/postage', obj);
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+function getPrice(req, res) {
+	var result = {yeet: "yeet"};
+	res.json(result);
+}
+
+function getItem(req, res) {
+
+	var keyword = req.query.title;
+
+	var params = {
+	keywords: [keyword]
+	};
+
+	ebay.xmlRequest({
+		serviceName: 'Finding',
+		opType: 'findItemsByKeywords',
+		appId: 'JasonPyl-cs313pro-PRD-92ccbdebc-dec6eadc',
+		params: params,
+		parser: ebay.parseResponseJson
+	},
 
 
+
+	function itemsCallback(error, itemsResponse) {
+		if (error) throw error;
+		var items = itemsResponse.searchResult.item;
+		console.log('Found', items.length, 'items');
+
+		res.write("<html><head><title>Pricing</title></head><body>");
+		res.write('<table>');
+		res.write("<tr>");
+		res.write("<th>ebay Item ID</th>");
+		res.write("<th>Item Name</th>");
+		res.write("<th>Item Price</th>");
+		res.write("</tr>")
+		
+		for (var i = 0; i < 100; i++) {
+			res.write('<tr>');
+
+			res.write('<td>');
+			res.write(items[i].itemId);
+			res.write('</td>');
+
+			res.write('<td>');
+			res.write(items[i].title);
+			res.write('</td>');
+
+			res.write('<td>');
+			res.write("$" + items[i].sellingStatus.currentPrice.amount);
+			res.write('</td>');
+
+			res.write('</tr>')
+		}
+	})
+
+	setTimeout(function(){
+        res.end();
+    }, 1000);
+
+
+	
+
+
+}
