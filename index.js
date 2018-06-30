@@ -61,7 +61,6 @@ function getItem(req, res) {
 
 
 	function itemsCallback(error, itemsResponse) {
-		storeQuery(keyword);
 		if (error) throw error;
 		var items = itemsResponse.searchResult.item;
 		console.log('Found', items.length, 'items');
@@ -95,6 +94,7 @@ function getItem(req, res) {
 
 	setTimeout(function(){
         res.end();
+        storeQuery(keyword);
     }, 1000);
 
 
