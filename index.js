@@ -1,13 +1,12 @@
 var express = require("express");
 var app = express();
 const path = require('path')
-
+const { Pool } = require('pg');
 
 const connectionString = process.env.DATABASE_URL;
+const pool = new Pool({connectionString: connectionString});
 
 var ebay = require('ebay-api');
-
-
 //EBAY PARAMS:
 //itemID = unique identifier
 //convertedCurrentPrice.amount
@@ -31,6 +30,18 @@ function getPrice(req, res) {
 	res.json(result);
 }
 
+function storeQuery(query) {
+	var sql = 'INSERT INTO item (searchItem, ts) VALUES ("' + query + '", CURRENT_TIMESTAMP';
+
+	pool.query(sql, function(err, result) {
+		if (err) {
+			console.log(err);
+		}
+		else console.log(result);
+	})
+
+}
+
 function getItem(req, res) {
 
 	var keyword = req.query.title;
@@ -50,6 +61,7 @@ function getItem(req, res) {
 
 
 	function itemsCallback(error, itemsResponse) {
+		storeQuery(keyword);
 		if (error) throw error;
 		var items = itemsResponse.searchResult.item;
 		console.log('Found', items.length, 'items');
