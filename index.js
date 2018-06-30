@@ -95,7 +95,7 @@ function getItem(req, res) {
 	setTimeout(function(){
         res.end();
         storeQuery(keyword);
-    }, 1000);
+    }, 2000);
 
 
 	
