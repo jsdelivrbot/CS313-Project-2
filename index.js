@@ -32,7 +32,7 @@ function getPrice(req, res) {
 }
 
 function storeQuery(query) {
-	var sql = 'INSERT INTO items (DEFAULT,"' + query + '", CURRENT_TIMESTAMP);';
+	var sql = 'INSERT INTO item (searchitem, ts) VALUES (\'' + query + '\', CURRENT_TIMESTAMP);';
 
 	console.log('INSERT INTO item (searchitem, ts) VALUES (\'' + query + '\', CURRENT_TIMESTAMP);');
 	console.log("DB WORK");
