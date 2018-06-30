@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 const path = require('path')
-const { Pool } = require{"pg"};
+
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -22,7 +22,7 @@ express()
 	})
 	.get("/getPrice", getPrice)
 	.get("/getItem", getItem)
-	.listen(5000, function() {
+	.listen(process.env.PORT || 5000, function() {
 		console.log("Now Listening on Port: ", app.get("port"));
 	});
 
