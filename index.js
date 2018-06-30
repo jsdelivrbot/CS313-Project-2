@@ -5,6 +5,7 @@ const { Pool } = require('pg');
 
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
+pool.connect();
 
 var ebay = require('ebay-api');
 //EBAY PARAMS:
