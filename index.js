@@ -245,7 +245,7 @@ function mainRender(req, res) {
 };
 
 function loginuser(req, res) {
-	pool.query('SELECT * FROM storeusers WHERE name = \'' + req.query.username + '\'' + ' AND pass = \'' + req.query.password + ';', function(err, result) {
+	pool.query('SELECT * FROM storeusers WHERE name = \'' + req.query.username + '\'' + ' AND pass = \'' + req.query.password + '\';', function(err, result) {
 
 		if (err) {
 			console.log(err);
