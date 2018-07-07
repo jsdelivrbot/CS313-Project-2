@@ -12,7 +12,7 @@ var ebay = require('ebay-api');
 var minutes = 0.5;
 var interval = minutes * 60 * 1000;
 
-setInterval(updatePrices, interval);
+//setInterval(updatePrices, interval);
 
 
 express()
@@ -164,10 +164,10 @@ function averagePrice(item) {
 		price /= length;
 
 		console.log("Got price");
-		return price;
 	})
 
-	console.log("Returnng");
+	console.log("PRICE: " + price.toString());
+	return price;
 
 }
 
