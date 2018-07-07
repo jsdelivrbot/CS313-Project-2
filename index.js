@@ -172,10 +172,6 @@ function averagePrice(item) {
         return price;
     }, 2000);
 
-
-
-	return price;
-
 }
 
 function getItem(req, res) {
