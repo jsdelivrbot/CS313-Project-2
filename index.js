@@ -139,4 +139,11 @@ function mainRender(req, res) {
 			res.write('</td></tr>')
 		})
 	})
+
+	res.write('</body></html');
+
+	setTimeout(function() {
+		res.end();
+	}, 2000);
+	
 }
