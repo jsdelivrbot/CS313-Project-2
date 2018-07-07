@@ -60,7 +60,7 @@ function storeUser(req, res) {
 		user: res.query.username
 	}
 
-	mainRender(res, obj);
+	mainRender(req, res);
 }
 
 function createUser(req, res) {
@@ -126,7 +126,7 @@ function getItem(req, res) {
     }, 2000);
 }
 
-function mainRender(res, obj) {
+function mainRender(req, res) {
 	res.write("<html><head><title>Pricing</title></head><body>");
 	res.write('<table>');
 	res.write('<tr>');
