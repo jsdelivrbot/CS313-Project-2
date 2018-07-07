@@ -30,7 +30,7 @@ express()
 	.get("/newUserDetails", storeUser)
 	.get("/main", mainRender)
 	.get("/priceTable", priceTableRender)
-	.get("/update", updatePrices)
+	.get("/update", updateTest)
 	.listen(process.env.PORT || 5000, function() {
 		console.log("Now Listening on Port: ", app.get("port"));
 	});
