@@ -245,13 +245,13 @@ function mainRender(req, res) {
 };
 
 function loginuser(req, res) {
-	pool.query('SELECT * FROM priceTable WHERE name = \'' + req.query.username + '\'' + ' AND pass = \'' + req.query.password + ';', function(err, result) {
+	pool.query('SELECT * FROM storeusers WHERE name = \'' + req.query.username + '\'' + ' AND pass = \'' + req.query.password + ';', function(err, result) {
 		if (result.rows.size() == 0) {
+			console.log(result.rows.size());
 			res.render("/pages/loginform");
 		}
 		else {
 			mainRender(req, res);
 		}
 	})
-
 }
