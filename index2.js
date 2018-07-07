@@ -30,6 +30,7 @@ express()
 	.get("/newUserDetails", storeUser)
 	.get("/main", mainRender)
 	.get("/priceTable", priceTableRender)
+	.get("/update", updatePrices)
 	.listen(process.env.PORT || 5000, function() {
 		console.log("Now Listening on Port: ", app.get("port"));
 	});
@@ -76,7 +77,12 @@ function storeQuery(query) {
 		}
 		else console.log(result);
 	})
+}
 
+function updateTest() {
+	res.write("running update");
+	res.end();
+	updatePrices();
 }
 
 function updatePrices() {
