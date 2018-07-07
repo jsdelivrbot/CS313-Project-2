@@ -60,7 +60,7 @@ function priceTableRender(req, res) {
 
 			result.rows.forEach(function(item) {
 				res.write('<tr><td>');
-				res.write(item.ts);
+				res.write(item.ts.toString());
 				res.write('</td><td>');
 				res.write(item.price);
 				res.write('</td></tr>')
