@@ -9,10 +9,10 @@ pool.connect();
 
 var ebay = require('ebay-api');
 
-var minutes = 0.5;
+var minutes = 30;
 var interval = minutes * 60 * 1000;
 
-//setInterval(updatePrices, interval);
+setInterval(updatePrices, interval);
 
 
 express()
@@ -51,7 +51,7 @@ function priceTableRender(req, res) {
 		}
 		else {
 			res.write("<html><head><title>Pricing</title></head><body>");
-			res.write('<h1>Price History For: ' + res.query.item);
+			res.write('<h1>Price History For: ' + req.query.item);
 			res.write('<table>');
 			res.write("<tr>");
 			res.write("<th>Date</th>");
