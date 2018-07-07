@@ -249,7 +249,7 @@ function loginuser(req, res) {
 		if (err) {
 			console.log(err);
 		}
-		else if (result.rows.size == 0) {
+		else if (result.rowCount == 0) {
 			console.log(result.rows.size());
 			res.render("/pages/loginform");
 		}
