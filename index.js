@@ -60,7 +60,7 @@ function priceTableRender(req, res) {
 
 			result.rows.forEach(function(item) {
 
-				var dateStr = item.ts.getFullYear();
+				var dateStr = (item.ts.getFullYear()).toString();
 
 				res.write('<tr><td>');
 				res.write(dateStr);
