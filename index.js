@@ -250,7 +250,6 @@ function loginuser(req, res) {
 			console.log(err);
 		}
 		else if (result.rowCount == 0) {
-			console.log(result.rows.size());
 			res.render("/pages/loginform");
 		}
 		else {
