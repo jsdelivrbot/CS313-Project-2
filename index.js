@@ -251,6 +251,6 @@ function login(req, res) {
 		else {
 			mainRender(req, res);
 		}
-	}
+	})
 
 }
