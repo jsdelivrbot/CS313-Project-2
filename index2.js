@@ -40,7 +40,7 @@ function getPrice(req, res) {
 }
 
 function priceTableRender(req, res) {
-	pool.query('SELECT * FROM priceTable WHERE searchitem = "' + req.query.item + '";', function(err, result) {
+	pool.query('SELECT * FROM priceTable WHERE searchitem = \'' + req.query.item + '\';', function(err, result) {
 
 		if (err) {
 			console.log(err);
