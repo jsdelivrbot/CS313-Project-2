@@ -133,10 +133,15 @@ function mainRender(req, res) {
 	res.write('<th>Previously searched items');
 	
 	pool.query('SELECT * FROM item;', function(err, result) {
-		res.write(result);
+		if (err) {
+			console.log(err);
+		}
+		else {
+			console.log(result);
+		}
 	})
 
-	res.write('</body></html');
+	res.write('</body></html>');
 
 	setTimeout(function() {
 		res.end();
