@@ -9,7 +9,7 @@ pool.connect();
 
 var ebay = require('ebay-api');
 
-var minutes = 5;
+var minutes = 0.5;
 var interval = minutes * 60 * 1000;
 
 setInterval(updatePrices, interval);
