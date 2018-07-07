@@ -251,6 +251,7 @@ function loginuser(req, res) {
 			res.render("/pages/loginform");
 		}
 		else {
+			console.log("login successful");
 			mainRender(req, res);
 		}
 	})
