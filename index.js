@@ -9,7 +9,7 @@ pool.connect();
 
 var ebay = require('ebay-api');
 
-var minutes = 5;
+var minutes = 0.5;
 var interval = minutes * 60 * 1000;
 
 setInterval(updatePrices, interval);
@@ -30,6 +30,7 @@ express()
 	.get("/newUserDetails", storeUser)
 	.get("/main", mainRender)
 	.get("/priceTable", priceTableRender)
+	.get("/update", updateTest)
 	.listen(process.env.PORT || 5000, function() {
 		console.log("Now Listening on Port: ", app.get("port"));
 	});
@@ -40,10 +41,11 @@ function getPrice(req, res) {
 }
 
 function priceTableRender(req, res) {
-	pool.query('SELECT * FROM priceTable WHERE searchitem = "' + req.query.item + '";', function(err, result) {
+	pool.query('SELECT * FROM priceTable WHERE searchitem = \'' + req.query.item + '\';', function(err, result) {
 
 		if (err) {
 			console.log(err);
+			console.log('SELECT * FROM priceTable WHERE searchitem = "' + req.query.item + '";')
 			res.write("No information on item in database");
 			res.end();
 		}
@@ -75,7 +77,12 @@ function storeQuery(query) {
 		}
 		else console.log(result);
 	})
+}
 
+function updateTest(req, res) {
+	res.write("running update");
+	res.end();
+	updatePrices();
 }
 
 function updatePrices() {
