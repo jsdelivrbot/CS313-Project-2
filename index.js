@@ -133,11 +133,7 @@ function mainRender(req, res) {
 	res.write('<th>Previously searched items');
 	
 	pool.query('SELECT * FROM item;', function(err, result) {
-		result.forEach(function(item) {
-			res.write('<tr><td>');
-			res.write(item);
-			res.write('</td></tr>')
-		})
+		res.write(result);
 	})
 
 	res.write('</body></html');
