@@ -116,7 +116,7 @@ function storeUser(req, res) {
 	})
 
 	var obj = {
-		user: res.query.username
+		user: req.query.username
 	}
 
 	mainRender(req, res);
