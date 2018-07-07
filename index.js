@@ -65,6 +65,7 @@ function priceTableRender(req, res) {
 				res.write(item.price.toString());
 				res.write('</td></tr>')
 			})
+			res.end();
 		}
 	})
 }
