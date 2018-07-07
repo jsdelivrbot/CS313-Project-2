@@ -139,7 +139,7 @@ function mainRender(req, res) {
 		else {
 			result.rows.forEach(function(item) {
 				res.write('<tr><td>');
-				res.write(item.searchitem);
+				res.write('<a href="/priceTable?item=' + item.searchitem + '">' + item.searchitem + '</a>');
 				res.write('</td></tr>')
 			})
 			console.log(result);
