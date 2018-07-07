@@ -170,7 +170,7 @@ function averagePrice(item) {
 	setTimeout(function () {
 		console.log("PRICE: " + price);
         return price;
-    }, 500);
+    }, 2000);
 
 
 
