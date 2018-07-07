@@ -137,19 +137,14 @@ function mainRender(req, res) {
 			console.log(err);
 		}
 		else {
-			result.rows.foreach(function(item) {
+			result.rows.forEach(function(item) {
 				res.write('<tr><td>');
-				res.write(item);
+				res.write(item.searchitem);
 				res.write('</td></tr>')
 			})
 			console.log(result);
+			res.write('</body></html>');
+			res.end();
 		}
 	})
-
-	res.write('</body></html>');
-
-	setTimeout(function() {
-		res.end();
-	}, 2000);
-	
 }
