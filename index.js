@@ -96,7 +96,7 @@ function updatePrices() {
 			result.rows.forEach(function(item) {
 				var name = item.searchitem;
 				var price = averagePrice(name);
-				var sql = 'INSERT INTO pricetable (searchitem, ts, price) VALUES(\'' + name + '\', CURRENT_TIMESTAMP, ' + price.toString();
+				var sql = 'INSERT INTO pricetable (searchitem, ts, price) VALUES(\'' + name + '\', CURRENT_TIMESTAMP, ' + price.toString() + ';';
 				pool.query(sql, function(err, result) {
 					if (err) {
 						console.log(err);
