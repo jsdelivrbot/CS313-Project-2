@@ -9,7 +9,7 @@ pool.connect();
 
 var ebay = require('ebay-api');
 
-var minutes = 30;
+var minutes = 1;
 var interval = minutes * 60 * 1000;
 
 setInterval(updatePrices, interval);
@@ -90,7 +90,6 @@ function updateTest(req, res) {
 }
 
 function updatePrices() {
-
 	pool.query('SELECT * FROM item;', function(err, result) {
 
 		if (err) {
