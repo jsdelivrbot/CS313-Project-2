@@ -79,7 +79,7 @@ function storeQuery(query) {
 	})
 }
 
-function updateTest() {
+function updateTest(req, res) {
 	res.write("running update");
 	res.end();
 	updatePrices();
