@@ -254,7 +254,7 @@ function loginuser(req, res) {
 			res.render("/pages/loginform");
 		}
 		else {
-			console.log("ROW COUNT" + result.rows.size)
+			console.log(result)
 			console.log("login successful");
 			mainRender(req, res);
 		}
