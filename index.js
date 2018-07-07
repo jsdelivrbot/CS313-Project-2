@@ -95,18 +95,9 @@ function updatePrices() {
 		else {
 			result.rows.forEach(function(item) {
 				var name = item.searchitem;
-				var price = averagePrice(name);
-				var sql = 'INSERT INTO pricetable (searchitem, ts, price) VALUES(\'' + name + '\', CURRENT_TIMESTAMP, ' + price.toString() + ');';
-				pool.query(sql, function(err, result) {
-					if (err) {
-						console.log(err);
-						console.log(sql);
-					}
-					else console.log(result);
-					})
+				averagePrice(name);
 			})
 	}
-
 })
 };
 
@@ -156,22 +147,23 @@ function averagePrice(item) {
 		var items = itemsResponse.searchResult.item;
 		var length = items.length;
 
-		
-
 		for (var i = 0; i < length; i++) {
 			price += items[i].sellingStatus.currentPrice.amount;
 		}
 
 		price /= length;
 
+		var sql = 'INSERT INTO pricetable (searchitem, ts, price) VALUES(\'' + item + '\', CURRENT_TIMESTAMP, ' + price.toString() + ');';
+		pool.query(sql, function(err, result) {
+			if (err) {
+				console.log(err);
+				console.log(sql);
+			}
+			else console.log(result);
+		})
+
 		console.log("Got price");
 	})
-
-	setTimeout(function () {
-		console.log("PRICE: " + price);
-        return price;
-    }, 2000);
-
 }
 
 function getItem(req, res) {
