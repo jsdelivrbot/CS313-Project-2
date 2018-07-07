@@ -26,7 +26,7 @@ express()
 	.get("/getPrice", getPrice)
 	.get("/getItem", getItem)
 	.get("/login", login)
-	.get("/createuser", createUser)
+	.get("/createUser", createUser)
 	.get("/newUserDetails", storeUser)
 	.get("/main", mainRender)
 	.get("/priceTable", priceTableRender)
@@ -122,7 +122,7 @@ function storeUser(req, res) {
 }
 
 function createUser(req, res) {
-	res.render('pages/creatuserForm');
+	res.render('pages/creatUserForm');
 }
 
 function login(req, res) {
