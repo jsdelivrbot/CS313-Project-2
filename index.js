@@ -242,3 +242,15 @@ function mainRender(req, res) {
 		}
 	})
 };
+
+function login(req, res) {
+	pool.query('SELECT * FROM priceTable WHERE name = \'' + req.query.username + '\'' ' AND pass = \'' + req.query.password + ';', function(err, result) {
+		if (result.rows.size() == 0) {
+			res.render("/pages/loginform");
+		}
+		else {
+			mainRender(req, res);
+		}
+	}
+
+}
