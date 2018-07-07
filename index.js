@@ -251,7 +251,7 @@ function loginuser(req, res) {
 			console.log(err);
 		}
 
-		else if (result.rows.size() == 0) {
+		else if (result.rows.size == 0) {
 			console.log(result.rows.size());
 			res.render("/pages/loginform");
 		}
