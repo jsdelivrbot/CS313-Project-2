@@ -22,6 +22,10 @@ express()
 	})
 	.get("/getPrice", getPrice)
 	.get("/getItem", getItem)
+	.get("/login", login)
+	.get("/createuser", createUser)
+	.get("/newUserDetails", storeUser)
+	.get("/main", mainRender)
 	.listen(process.env.PORT || 5000, function() {
 		console.log("Now Listening on Port: ", app.get("port"));
 	});
@@ -33,9 +37,6 @@ function getPrice(req, res) {
 
 function storeQuery(query) {
 	var sql = 'INSERT INTO item (searchitem, ts) VALUES (\'' + query + '\', CURRENT_TIMESTAMP);';
-
-	console.log('INSERT INTO item (searchitem, ts) VALUES (\'' + query + '\', CURRENT_TIMESTAMP);');
-	console.log("DB WORK");
 	pool.query(sql, function(err, result) {
 		if (err) {
 			console.log(err);
@@ -45,8 +46,32 @@ function storeQuery(query) {
 
 }
 
-function getItem(req, res) {
+function storeUser(req, res) {
+	var sql = 'INSERT INTO storeusers (name, pass) VALUES(\'' + res.query.username + '\', \'' + res.query.password + '\');';
 
+	pool.query(sql, function(err, result) {
+		if (err) {
+			console.log(err);
+		}
+		else console.log(result);
+	})
+
+	var obj = {
+		user: res.query.username;
+	}
+
+	mainRender(res, obj);
+}
+
+function createUser(req, res) {
+	res.render('pages/creatuserForm');
+}
+
+function login(req, res) {
+	res.render('pages/loginform');
+}
+
+function getItem(req, res) {
 	var keyword = req.query.title;
 
 	var params = {
@@ -99,9 +124,19 @@ function getItem(req, res) {
         res.end();
         storeQuery(keyword);
     }, 2000);
+}
 
-
+function mainRender(res, obj) {
+	res.write("<html><head><title>Pricing</title></head><body>");
+	res.write('<table>');
+	res.write('<tr>');
+	res.write('<th>Previously searched items');
 	
-
-
+	pool.query('SELECT * FROM item;', function(err, result) {
+		result.forEach(function(item) {
+			res.write('<tr><td>');
+			res.write(item);
+			res.write('</td></tr>')
+		})
+	})
 }
