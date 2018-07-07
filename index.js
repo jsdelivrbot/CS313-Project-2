@@ -137,6 +137,11 @@ function mainRender(req, res) {
 			console.log(err);
 		}
 		else {
+			result.rows.foreach(function(item) {
+				res.write('<tr><td>');
+				res.write(item);
+				res.write('</td></tr>')
+			})
 			console.log(result);
 		}
 	})
