@@ -167,7 +167,13 @@ function averagePrice(item) {
 		console.log("Got price");
 	})
 
-	console.log("PRICE: " + price.toString());
+	setTimeout(function () {
+		console.log("PRICE: " + price);
+        return price;
+    }, 500);
+
+
+
 	return price;
 
 }
