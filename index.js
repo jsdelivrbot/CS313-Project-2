@@ -139,6 +139,8 @@ function averagePrice(item) {
 		keywords: item
 	};
 
+	var price = 0;
+
 	ebay.xmlRequest({
 		serviceName: 'Finding',
 		opType: 'findItemsByKeywords',
@@ -153,7 +155,7 @@ function averagePrice(item) {
 		var items = itemsResponse.searchResult.item;
 		var length = items.length;
 
-		var price = 0;
+		
 
 		for (var i = 0; i < length; i++) {
 			price += items[i].sellingStatus.currentPrice.amount;
@@ -161,8 +163,12 @@ function averagePrice(item) {
 
 		price /= length;
 
+		console.log("Got price");
 		return price;
 	})
+
+	console.log("Returnng");
+
 }
 
 function getItem(req, res) {
