@@ -106,7 +106,7 @@ function updatePrices() {
 };
 
 function storeUser(req, res) {
-	var sql = 'INSERT INTO storeusers (name, pass) VALUES(\'' + res.query.username + '\', \'' + res.query.password + '\');';
+	var sql = 'INSERT INTO storeusers (name, pass) VALUES(\'' + req.query.username + '\', \'' + req.query.password + '\');';
 
 	pool.query(sql, function(err, result) {
 		if (err) {
