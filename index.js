@@ -218,6 +218,7 @@ function getItem(req, res) {
 		}
 		res.end();
         storeQuery(keyword);
+        updatePrices();
 	})
 }
 
