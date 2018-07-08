@@ -228,7 +228,7 @@ function mainRender(req, res) {
 	res.write('<form action="/getItem" method="GET">');
 	res.write('<input type="text" id="title" name="title"/>');
 	res.write('<br>');
-	res.write('<input type="submit" value="submit"');
+	res.write('<input type="submit" value="submit"/>');
 	res.write('</form><br>')
 
 
