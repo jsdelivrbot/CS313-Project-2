@@ -20,9 +20,7 @@ express()
   	.set('views', path.join(__dirname, 'views'))
   	.set('view engine', 'ejs')
 	.set("port", (process.env.PORT || 5000))
-	.get('/', function(req, res) {
-  		res.render('pages/requestForm');
-	})
+	.get('/', login);
 	.get("/getPrice", getPrice)
 	.get("/getItem", getItem)
 	.get("/login", login)
