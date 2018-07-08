@@ -226,7 +226,7 @@ function mainRender(req, res) {
 
 	res.write('<h1>Enter name of item to start tracking</h1>');
 	res.write('<form action="/getItem" method="GET"');
-	res.write('<input type="text" id="title" name="title"');
+	res.write('<input type="text" id="title" name="title"/>');
 	res.write('<br>');
 	res.write('<input type="submit" value="submit"');
 	res.write('</form><br>')
