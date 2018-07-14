@@ -61,11 +61,12 @@ function priceTableRender(req, res) {
 
 				var year = item.ts.getFullYear();
 				var month = item.ts.getMonth() + 1;
+				var date = item.ts.getDate();
 
 				var hour = item.ts.getHours();
 				var minutes = item.ts.getMinutes();
 
-				var dateStr = month.toString() + "/" + year.toString() + " " + hour.toString() + ":" + minutes.toString();
+				var dateStr = month.toString() + "/" + date + "/" + year.toString() + " " + hour.toString() + ":" + minutes.toString();
 
 				res.write('<tr><td>');
 				res.write(dateStr);
