@@ -59,8 +59,6 @@ function priceTableRender(req, res) {
 
 			result.rows.forEach(function(item) {
 
-				var 
-
 				var dateStr = item.ts.toString();
 
 				res.write('<tr><td>');
